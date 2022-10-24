@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   if(status === "loading"){
     return <main>Loading...</main>;
   }
-
+console.log(session)
   return (
     <>
       <Head>
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
           session ? (
             <div>
               <p>Hi {session.user?.name}</p>
-
+              <p>Your email address is {session.user?.email}</p>
               <button onClick={()=> signOut()}>
                 Logout
               </button>
