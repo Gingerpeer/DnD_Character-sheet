@@ -54,12 +54,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex flex-col items-center">
-        <h1 className="text-3xl pt-4">Guestbook</h1>
+        <h1 className="text-3xl pt-4">Comments</h1>
         {
           session ? (
             <div className="pt-10">
               <p>Hi {session.user?.name}</p>
-              <p>Your email address is {session.user?.email}</p>
               <button onClick={()=> signOut()}>
                 Logout
               </button>
@@ -99,17 +98,18 @@ const Home: NextPage = () => {
             </div>
           ) : (
             <div>
-              <button onClick={()=> signIn("discord")}>
-                Login with Discord
-              </button>
+              
               <div className="pt-10">
                 <Messages />
               </div>
+              <button className="mt-10 btn bg-blue-900 p-2 rounded-md" onClick={()=> signIn("discord")}>
+                Login with Discord to Comment
+              </button>
             </div>
           )
         }
         <div className="footer">
-          <p>version 1.0</p>
+          <p className="pt-10 mt-10">version 1.0</p>
         </div>
       </main>
     </>
