@@ -14,7 +14,7 @@ const Messages = () => {
           return (
             <div key={index}>
               <p>{msg.message}</p>
-              <span>{msg.name}</span>
+              <span>- {msg.name}</span>
             </div>
           )
         })
