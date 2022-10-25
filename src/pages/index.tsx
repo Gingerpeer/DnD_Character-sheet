@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   const { data: session, status } = useSession();
 
   if(status === "loading"){
-    return <main>Loading...</main>;
+    return <main className="flex flex-col items-center pt-4">Loading...</main>;
   }
 // console.log(session)
   return (
@@ -16,11 +16,11 @@ const Home: NextPage = () => {
         <meta name="description" content="Ruach Studios" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <h1>Guestbook</h1>
+      <main className="flex flex-col items-center">
+        <h1 className="text-3xl pt-4">Guestbook</h1>
         {
           session ? (
-            <div>
+            <div className="pt-10">
               <p>Hi {session.user?.name}</p>
               <p>Your email address is {session.user?.email}</p>
               <button onClick={()=> signOut()}>
