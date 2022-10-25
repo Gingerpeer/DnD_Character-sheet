@@ -108,6 +108,9 @@ const Home: NextPage = () => {
             </div>
           )
         }
+        <div className="footer">
+          <p>version 1.0</p>
+        </div>
       </main>
     </>
   );
