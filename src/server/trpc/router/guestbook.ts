@@ -4,7 +4,7 @@ import { z } from "zod";
 
 export const guestbookRouter = router({
   getAll: publicProcedure
-  .mutation(async({ ctx })=>{
+  .query(async({ ctx })=>{
     try {
       return await ctx.prisma.guestbook.findMany({
         select: {
