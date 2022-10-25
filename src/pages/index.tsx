@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   if(status === "loading"){
     return <main>Loading...</main>;
   }
-console.log(session)
+// console.log(session)
   return (
     <>
       <Head>
