@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
+import Image from "next/image";
+import Dragon from "../../public/dragon.jpg"
 import { useState } from "react";
 
 const Messages = () => {
@@ -49,11 +51,21 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Ruach Studios</title>
-        <meta name="description" content="Ruach Studios" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Character Sheet {session ? `| ${session.user?.name}`: ""}</title>
+        <meta name="description" content="DnD Character Sheet" />
+        <link rel="icon" href="/dnd.svg" />
       </Head>
       <main className="flex flex-col items-center">
+      <div className="bgWrap">
+          <Image 
+            src={Dragon} 
+            sizes="100vw"
+            style={{
+              objectFit: "cover"
+            }}
+            alt="Dragon Image from https://www.pexels.com/search/dungeons%20and%20dragons/"  
+            />
+        </div>
         <h1 className="text-3xl pt-4">Comments</h1>
         {
           session ? (
