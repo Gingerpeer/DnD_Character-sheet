@@ -52,7 +52,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Character Sheet {session ? `| ${session.user?.name}`: ""}</title>
+        <title>CS {session ? `| ${session.user?.name}`: ""}</title>
         <meta name="description" content="DnD Character Sheet" />
         <link rel="icon" href="/dnd.svg" />
       </Head>
@@ -116,16 +116,15 @@ const Home: NextPage = () => {
                 <div className="pt-10">
                   <Messages />
                 </div>
-                <div className="card bg-purple-300 p-2 rounded">
+                <div className="card border-2 border-red-400 p-2 rounded text-center">
                   <h1 className="text-center font-extrabold text-lg">Login</h1>
-                <button className="mt-10 btn" onClick={()=> signIn("discord")}>
+                <button className="mt-10 btn p-1 rounded hover:bg-red-400" onClick={()=> signIn("discord")}>
                   <Image
                     src={Discord}
                     width={64}
                     height={64}
                     alt="Icon by https://freeicons.io/profile/722"
                     />
-                    
                 </button>
                 </div>
               </div>
