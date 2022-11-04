@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import Image from "next/image";
 import Dragon from "../../public/dragon.jpg"
+import Discord from "../../public/discord.svg"
 import { useState } from "react";
 
 const Messages = () => {
@@ -66,63 +67,74 @@ const Home: NextPage = () => {
             alt="Dragon Image from https://www.pexels.com/search/dungeons%20and%20dragons/"  
             />
         </div>
-        <h1 className="text-3xl pt-4">Comments</h1>
-        {
-          session ? (
-            <div className="pt-10">
-              <p>Hi {session.user?.name}</p>
-              <button onClick={()=> signOut()}>
-                Logout
-              </button>
-              <div className="pt-6">
-                <form
-                  className="flex gap-2"
-                  onSubmit={(event)=>{
-                    event.preventDefault();
+        <div className="card bg-slate-500 bg-opacity-80 p-10 rounded mt-48">
+          <h1 className="text-3xl pt-4 text-center">Character Sheet</h1>
+          {
+            session ? (
+              <div className="pt-10">
+                <p className="mb-5">Hi {session.user?.name}</p>
+                <button className="p-2 rounded-md border-2 border-zinc-800 focus:outline-none hover:bg-red-400 hover:border-red-400" onClick={()=> signOut()}>
+                  Logout
+                </button>
+                <div className="pt-6">
+                  <form
+                    className="flex gap-2"
+                    onSubmit={(event)=>{
+                      event.preventDefault();
 
-                    postMessage.mutate({
-                      name: session.user?.name as string,
-                      message,
-                    });
-                    
-                    setMessage("");
-                  }}
-                  >
-                    <input 
-                      type="text"
-                      value={message}
-                      placeholder="Your message..."
-                      maxLength={100}
-                      onChange={(event)=> setMessage(event.target.value)}
-                      className="px-4 py-2 rounded-md border-2 border-zinc-800 bg-neutral-900 focus:outline-none"
+                      postMessage.mutate({
+                        name: session.user?.name as string,
+                        message,
+                      });
+                      
+                      setMessage("");
+                    }}
+                    >
+                      <input 
+                        type="text"
+                        value={message}
+                        placeholder="Your message..."
+                        maxLength={100}
+                        onChange={(event)=> setMessage(event.target.value)}
+                        className="px-4 py-2 rounded-md border-2 border-zinc-800 bg-neutral-900 focus:outline-none"
+                      />
+                      <button
+                        type="submit"
+                        className="p-2 rounded-md border-2 border-zinc-800 focus:outline-none hover:bg-red-400 hover:border-red-400"
+                        >
+                        Submit
+                      </button>
+                  </form>
+                </div>
+                <div className="pt-10">
+                  <Messages />
+                </div>
+              </div>
+            ) : (
+              <div>
+                
+                <div className="pt-10">
+                  <Messages />
+                </div>
+                <div className="card bg-purple-300 p-2 rounded">
+                  <h1 className="text-center font-extrabold text-lg">Login</h1>
+                <button className="mt-10 btn" onClick={()=> signIn("discord")}>
+                  <Image
+                    src={Discord}
+                    width={64}
+                    height={64}
+                    alt="Icon by https://freeicons.io/profile/722"
                     />
-                    <button
-                      type="submit"
-                      className="p-2 rounded-md border-2 border-zinc-800 focus:outline-none"
-                      >
-                      Submit
-                    </button>
-                </form>
+                    
+                </button>
+                </div>
               </div>
-              <div className="pt-10">
-                <Messages />
-              </div>
-            </div>
-          ) : (
-            <div>
-              
-              <div className="pt-10">
-                <Messages />
-              </div>
-              <button className="mt-10 btn bg-blue-900 p-2 rounded-md" onClick={()=> signIn("discord")}>
-                Login with Discord to Comment
-              </button>
-            </div>
-          )
-        }
-        <div className="footer">
-          <p className="pt-10 mt-10">version 1.0</p>
+            )
+          }
         </div>
+        <div className="footer">
+            <p className="pt-10 mt-10">version 1.0</p>
+          </div>
       </main>
     </>
   );
